@@ -1,0 +1,16 @@
+INSERT INTO mobile_phones (brand, model, performance, price)
+VALUES ('iPhone', '14PRO', 11, 1500),
+       ('iPhone', '14', 10, 1400),
+       ('iPhone', '12PRO', 10, 1300),
+       ('iPhone', '12', 9, 1200),
+       ('iPhone', 'R', 8, 1000),
+       ('SAMSUNG', 'Galaxy Note21', 11, 1500),
+       ('SAMSUNG', 'Galaxy S21+', 10, 1350),
+       ('SAMSUNG', 'Galaxy S21', 10, 1200),
+       ('SAMSUNG', 'Galaxy S20+', 9, 1100),
+       ('SAMSUNG', 'Galaxy S20', 9, 1000),
+       ('Xiaomi', '12PRO', 10, 1300),
+       ('Huawei', 'Xs2', 11, 1700),
+       ('Huawei', 'P50 Pocket', 11, 1600),
+       ('Realme', 'GT2 PRO12', 9, 1200),
+       ('Nokia', '5310DS', 2, 150);
