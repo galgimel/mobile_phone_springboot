@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1 th:text="'Mobile phone info:'"></h1>
+<table>
+    <tr>
+        <td>Brand:</td>
+        <td><p th:text="${mobilePhone.getBrand()}"/></td>
+    </tr>
+    <tr>
+        <td>Model:</td>
+        <td><p th:text="${mobilePhone.getModel()}"/></td>
+    </tr>
+    <tr>
+        <td>Performance:</td>
+        <td><p th:text="${mobilePhone.getPerformance()}"/></td>
+    </tr>
+    <tr>
+        <td>Price:</td>
+        <td><p th:text="${mobilePhone.getPrice()}">/></td>
+    </tr>
+</table>
+<br>
+<hr>
+<table>
+    <tr>
+        <td>
+            <input type="button" value="Main View"
+                   onclick="window.location.href = '/'"/>
+        </td>
+        <td>
+            <form th:method="GET" th:action="@{/updateMobilePhone/{id}(id=${mobilePhone.getId()})}">
+                <input type="submit" value="Edit"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{/deleteEmployee/{id}(id=${mobilePhone.getId()})}"
+                  th:object="${mobilePhone}">
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+        <td>
+            <input type="button" value="Back"
+                   onclick="window.location.href = '/showMobilePhones'"/>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

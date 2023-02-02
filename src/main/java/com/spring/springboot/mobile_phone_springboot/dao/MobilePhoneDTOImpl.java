@@ -24,12 +24,12 @@ public class MobilePhoneDTOImpl implements MobilePhoneDTO {
     @Override
     public void saveMobilePhone(MobilePhone mobilePhone) {
         MobilePhone newMobilePhone = entityManager.merge(mobilePhone);
+
         mobilePhone.setId(newMobilePhone.getId());
     }
 
     @Override
     public MobilePhone getMobilePhone(int id) {
-
         MobilePhone mobilePhone = entityManager.find(MobilePhone.class, id);
         return mobilePhone;
     }

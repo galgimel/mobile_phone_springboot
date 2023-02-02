@@ -40,3 +40,20 @@ onclick="window.location.href = 'backToFirstView'"/>
        onclick="window.location.href = 'addNewMobilePhone'"/>
 </body>
 </html>
+
+<a th:href="@{getMobilePhones/{id}(id=${mobilePhone.getId()})}"
+   th:text="${mobilePhone.getBrand()} ${mobilePhone.getModel()}">phone</a>
+
+<input type="button" value="More"
+       onclick="window.location.href =
+               '/getMobilePhones/{id}(id=${mobilePhone.getId()})'"/>
+
+<form th:method="DELETE" th:action="@{/deleteEmployee/{id}(id=${mobilePhone.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+
+<form th:method="GET" th:action="@{getMobilePhones/{id}(id=${mobilePhone.getId()})}" th:object="${mobilePhone}">
+
+</form>
+

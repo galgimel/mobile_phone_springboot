@@ -10,56 +10,65 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @org.springframework.stereotype.Controller
+@RequestMapping("/")
 public class Controller {
     @Autowired
     private MobilePhoneService mobilePhoneService;
-    @GetMapping
+
+
+    @GetMapping("/")
     public String backToFirstView() {
-        return"first-view";
+        return "first-view";
     }
-    @GetMapping("/mobilePhones")
+
+
+    @GetMapping("/showMobilePhones")
 
     public String showAllMobilePhones(Model model) {
         List<MobilePhone> allMobilePhones = mobilePhoneService.getAllMobilePhones();
-        model.addAttribute("allMPs", allMobilePhones);
+        model.addAttribute("allMobilePhones", allMobilePhones);
 
         return "all-mobilePhones";
     }
 
-    @GetMapping("/mobilePhones/{id}")
-    public MobilePhone getEmployee(@PathVariable int id) {
-        MobilePhone mobilePhone = mobilePhoneService.getMobilePhone(id);
 
-        return mobilePhone;
+    @GetMapping("/getMobilePhones/{id}")
+    public String getMobilePhone(@PathVariable int id, Model model) {
+        model.addAttribute("mobilePhone", mobilePhoneService.getMobilePhone(id));
+
+        return "mobilePhone-profile";
     }
 
-      @PostMapping("/mobilePhones")
-      public String addNewMobilePhone(Model model) {
-          MobilePhone mobilePhone = new MobilePhone();
-          model.addAttribute("mobilePhone", mobilePhone);
 
-          return "mobilePhones-info";
-      }
+    @GetMapping("/addNewMobilePhone")
+    public String addNewMobilePhone(@ModelAttribute("mobilePhone") MobilePhone mobilePhone) {
 
-    @PutMapping("/mobilePhones")
-    public String saveMobilePhone(@ModelAttribute("mobilePhone") MobilePhone mobilePhones) {
-        mobilePhoneService.saveMobilePhone(mobilePhones);
+        return "mobilePhone-create";
+    }
+    @PostMapping("/saveMobilePhone")
+    public String saveMobilePhone(@ModelAttribute("mobilePhone") MobilePhone mobilePhone) {
+        mobilePhoneService.saveMobilePhone(mobilePhone);
 
-        return "all-mobilePhones";
+        return "redirect:/showMobilePhones";
     }
 
-//      @RequestMapping("/updateInfo")
-//      public String updateMobilePhone(@RequestParam("mpId") int id, Model model) {
-//          MobilePhone mobilePhone = mobilePhoneService.getMobilePhones(id);
-//          model.addAttribute("mobilePhone", mobilePhone);
-//
-//          return "mobilePhones-info";
-//      }
+    @GetMapping("/updateMobilePhone/{id}")
+    public String updateMobilePhone(@PathVariable("id") int id, Model model) {
+        model.addAttribute("mobilePhone", mobilePhoneService.getMobilePhone(id));
 
-    @DeleteMapping("/mobilePhones/{id}")
-    public String deleteMobilePhone(@RequestParam("mpId") int id) {
+        return "mobilePhone-update";
+    }
+
+    @PatchMapping("/saveUpdatedMobilePhone")
+    public String saveUpdatedMobilePhone(@ModelAttribute("mobilePhone") MobilePhone mobilePhone) {
+        mobilePhoneService.saveMobilePhone(mobilePhone);
+
+        return "redirect:/showMobilePhones";
+    }
+
+    @RequestMapping("/deleteEmployee/{id}")
+    public String deleteMobilePhone(@PathVariable("id") int id) {
         mobilePhoneService.deleteMobilePhone(id);
-        return "all-mobilePhones";
+        return "redirect:/showMobilePhones";
     }
-
 }
