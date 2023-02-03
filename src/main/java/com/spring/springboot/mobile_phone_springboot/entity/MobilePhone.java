@@ -1,7 +1,12 @@
 package com.spring.springboot.mobile_phone_springboot.entity;
 
-import javax.persistence.*;
+import lombok.*;
 
+import javax.persistence.*;
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "mobile_phones")
 public class MobilePhone {
@@ -18,8 +23,6 @@ public class MobilePhone {
     @Column(name = "price")
     private int price;
 
-    public MobilePhone() {}
-
     public MobilePhone(String brand, String model, int performance, int price) {
         this.brand = brand;
         this.model = model;
@@ -31,54 +34,4 @@ public class MobilePhone {
         this.model = model;
     }
 
-    @Override
-    public String toString() {
-        return "MobilePhone{" +
-            "id=" + id +
-            ", brand='" + brand + '\'' +
-            ", model='" + model + '\'' +
-            ", performance=" + performance +
-            ", price=" + price +
-            '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public int getPerformance() {
-        return performance;
-    }
-
-    public void setPerformance(int performance) {
-        this.performance = performance;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
 }

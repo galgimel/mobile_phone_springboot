@@ -1,5 +1,6 @@
 package com.spring.springboot.mobile_phone_springboot.controller;
 
+import com.spring.springboot.mobile_phone_springboot.response.MobilePhoneResponse;
 import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
 import com.spring.springboot.mobile_phone_springboot.service.MobilePhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @org.springframework.stereotype.Controller
 @RequestMapping("/")
-public class Controller {
+public class MobilePhoneController {
     @Autowired
     private MobilePhoneService mobilePhoneService;
 
@@ -25,7 +26,7 @@ public class Controller {
     @GetMapping("/showMobilePhones")
 
     public String showAllMobilePhones(Model model) {
-        List<MobilePhone> allMobilePhones = mobilePhoneService.getAllMobilePhones();
+        List<MobilePhoneResponse> allMobilePhones = mobilePhoneService.getAllMobilePhones();
         model.addAttribute("allMobilePhones", allMobilePhones);
 
         return "all-mobilePhones";
