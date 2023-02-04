@@ -12,14 +12,18 @@ import java.util.List;
 
 @Service
 public class MobilePhoneServiceImpl implements MobilePhoneService {
-    @Autowired
     private MobilePhoneRepository mobilePhoneRepository;
+
+    @Autowired
+    public MobilePhoneServiceImpl(MobilePhoneRepository mobilePhoneRepository) {
+        this.mobilePhoneRepository = mobilePhoneRepository;
+    }
 
     @Override
     @Transactional
     public List<MobilePhoneResponse> getAllMobilePhones() {
-        List<MobilePhone> mobilePhoneList = mobilePhoneRepository.findAll();
-        List<MobilePhoneResponse> mobilePhoneResponseList = new ArrayList<>();
+        final List<MobilePhone> mobilePhoneList = mobilePhoneRepository.findAll();
+        final List<MobilePhoneResponse> mobilePhoneResponseList = new ArrayList<>();
         for (MobilePhone mobilePhone : mobilePhoneList) {
             mobilePhoneResponseList.add( MobilePhoneResponse.builder()
                 .id(mobilePhone.getId())
@@ -34,14 +38,14 @@ public class MobilePhoneServiceImpl implements MobilePhoneService {
 
     @Override
     @Transactional
-    public void saveMobilePhone(MobilePhone mobilePhone) {
+    public void saveMobilePhone(final MobilePhone mobilePhone) {
         mobilePhoneRepository.save(mobilePhone);
     }
 
     @Override
     @Transactional
-    public MobilePhoneResponse getMobilePhone(int id) {
-        MobilePhone mobilePhone = mobilePhoneRepository.findById(id);
+    public MobilePhoneResponse getMobilePhone(final int id) {
+        final MobilePhone mobilePhone = mobilePhoneRepository.getReferenceById(id);
         return MobilePhoneResponse.builder()
             .id(mobilePhone.getId())
             .brand(mobilePhone.getBrand())
@@ -53,7 +57,7 @@ public class MobilePhoneServiceImpl implements MobilePhoneService {
 
     @Override
     @Transactional
-    public void deleteMobilePhone(int id) {
+    public void deleteMobilePhone(final int id) {
         mobilePhoneRepository.deleteById(id);
     }
 }

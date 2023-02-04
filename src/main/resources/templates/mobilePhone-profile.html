@@ -38,14 +38,14 @@
             </form>
         </td>
         <td>
-            <form th:method="DELETE" th:action="@{/deleteEmployee/{id}(id=${mobilePhone.getId()})}"
+            <form th:method="DELETE" th:action="@{/mobile_phones/{id}(id=${mobilePhone.getId()})}"
                   th:object="${mobilePhone}">
                 <input type="submit" value="Delete"/>
             </form>
         </td>
         <td>
-            <input type="button" value="Back"
-                   onclick="window.location.href = '/showMobilePhones'"/>
+            <input type="button" value="All phones"
+                   onclick="window.location.href = '/mobile_phones'"/>
         </td>
     </tr>
 </table>

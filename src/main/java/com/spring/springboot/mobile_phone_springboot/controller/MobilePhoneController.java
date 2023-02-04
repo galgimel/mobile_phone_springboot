@@ -1,30 +1,30 @@
 package com.spring.springboot.mobile_phone_springboot.controller;
 
-import com.spring.springboot.mobile_phone_springboot.response.MobilePhoneResponse;
 import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
+import com.spring.springboot.mobile_phone_springboot.response.MobilePhoneResponse;
 import com.spring.springboot.mobile_phone_springboot.service.MobilePhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
 
-@org.springframework.stereotype.Controller
+@Controller
 @RequestMapping("/")
 public class MobilePhoneController {
-    @Autowired
     private MobilePhoneService mobilePhoneService;
-
+    @Autowired
+    public MobilePhoneController(MobilePhoneService mobilePhoneService){
+        this.mobilePhoneService = mobilePhoneService;
+    }
 
     @GetMapping("/")
     public String backToFirstView() {
         return "first-view";
     }
 
-
-    @GetMapping("/showMobilePhones")
-
+    @GetMapping("/mobile_phones")
     public String showAllMobilePhones(Model model) {
         List<MobilePhoneResponse> allMobilePhones = mobilePhoneService.getAllMobilePhones();
         model.addAttribute("allMobilePhones", allMobilePhones);
@@ -32,25 +32,24 @@ public class MobilePhoneController {
         return "all-mobilePhones";
     }
 
-
-    @GetMapping("/getMobilePhones/{id}")
+    @GetMapping("/mobile_phones/{id}")
     public String getMobilePhone(@PathVariable int id, Model model) {
         model.addAttribute("mobilePhone", mobilePhoneService.getMobilePhone(id));
 
         return "mobilePhone-profile";
     }
 
-
     @GetMapping("/addNewMobilePhone")
     public String addNewMobilePhone(@ModelAttribute("mobilePhone") MobilePhone mobilePhone) {
 
         return "mobilePhone-create";
     }
-    @PostMapping("/saveMobilePhone")
+
+    @PostMapping("/mobile_phones")
     public String saveMobilePhone(@ModelAttribute("mobilePhone") MobilePhone mobilePhone) {
         mobilePhoneService.saveMobilePhone(mobilePhone);
 
-        return "redirect:/showMobilePhones";
+        return "redirect:/mobile_phones";
     }
 
     @GetMapping("/updateMobilePhone/{id}")
@@ -60,16 +59,16 @@ public class MobilePhoneController {
         return "mobilePhone-update";
     }
 
-    @PatchMapping("/saveUpdatedMobilePhone")
+    @PutMapping("/mobile_phones/{id}")
     public String saveUpdatedMobilePhone(@ModelAttribute("mobilePhone") MobilePhone mobilePhone) {
         mobilePhoneService.saveMobilePhone(mobilePhone);
 
-        return "redirect:/showMobilePhones";
+        return "redirect:/mobile_phones";
     }
 
-    @RequestMapping("/deleteEmployee/{id}")
+    @DeleteMapping("/mobile_phones/{id}")
     public String deleteMobilePhone(@PathVariable("id") int id) {
         mobilePhoneService.deleteMobilePhone(id);
-        return "redirect:/showMobilePhones";
+        return "redirect:/mobile_phones";
     }
 }

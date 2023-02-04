@@ -7,19 +7,17 @@
 <body>
 
 <h2 th:text="'All Mobile Phones:'"></h2>
-<div th:each="mobilePhone : ${allMobilePhones}">
-    <table>
-        <tr>
+<table>
+        <tr th:each="mobilePhone : ${allMobilePhones}">
             <td><p th:text="${mobilePhone.getBrand()}"/></td>
             <td><p th:text="${mobilePhone.getModel()}"/></td>
             <td>
-                <form th:method="GET" th:action="@{getMobilePhones/{id}(id=${mobilePhone.getId()})}">
+                <form th:method="GET" th:action="@{mobile_phones/{id}(id=${mobilePhone.getId()})}">
                     <input type="submit" value="More"/>
                 </form>
             </td>
         </tr>
-    </table>
-</div>
+</table>
 <br>
 <hr>
 <input type="button" value="Main View"
