@@ -14,6 +14,7 @@ import java.util.List;
 @RequestMapping("/")
 public class MobilePhoneController {
     private MobilePhoneService mobilePhoneService;
+
     @Autowired
     public MobilePhoneController(MobilePhoneService mobilePhoneService){
         this.mobilePhoneService = mobilePhoneService;

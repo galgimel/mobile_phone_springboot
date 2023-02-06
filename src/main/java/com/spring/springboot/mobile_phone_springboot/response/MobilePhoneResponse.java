@@ -13,7 +13,7 @@ public class MobilePhoneResponse {
     private String model;
     private int performance;
     private int price;
-    public static MobilePhoneResponse getResponse(MobilePhone mobilePhone) {
+    public static MobilePhoneResponse getMobilePhoneResponse(MobilePhone mobilePhone) {
         return MobilePhoneResponse.builder()
             .id(mobilePhone.getId())
             .brand(mobilePhone.getBrand())

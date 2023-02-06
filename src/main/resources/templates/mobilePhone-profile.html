@@ -8,6 +8,10 @@
 <h1 th:text="'Mobile phone info:'"></h1>
 <table>
     <tr>
+        <td>ID:</td>
+        <td><p th:text="${mobilePhone.getId()}"/></td>
+    </tr>
+    <tr>
         <td>Brand:</td>
         <td><p th:text="${mobilePhone.getBrand()}"/></td>
     </tr>
@@ -42,6 +46,10 @@
                   th:object="${mobilePhone}">
                 <input type="submit" value="Delete"/>
             </form>
+        </td>
+        <td>
+            <input type="button" value="All users"
+                   onclick="window.location.href = '/users'"/>
         </td>
         <td>
             <input type="button" value="All phones"
