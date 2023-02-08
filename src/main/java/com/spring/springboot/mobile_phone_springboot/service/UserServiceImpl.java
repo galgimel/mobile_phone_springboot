@@ -1,5 +1,6 @@
 package com.spring.springboot.mobile_phone_springboot.service;
 
+import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
 import com.spring.springboot.mobile_phone_springboot.entity.User;
 import com.spring.springboot.mobile_phone_springboot.repository.UserRepository;
 import com.spring.springboot.mobile_phone_springboot.response.UserResponse;
@@ -7,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.spring.springboot.mobile_phone_springboot.response.UserResponse.getUserResponse;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
@@ -24,12 +25,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public List<UserResponse> getAllUsers() {
-        final List<User> users = userRepository.findAll();
-        final List<UserResponse> userResponses = new ArrayList<>();
-        for (User user : users) {
-            userResponses.add(getUserResponse(user));
-        }
-        return userResponses;
+        return userRepository.findAll().stream()
+            .map(user -> getUserResponse(user)).collect(Collectors.toList());
     }
 
     @Override
@@ -49,5 +46,16 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteUser(final int id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public boolean usersMobilePhoneIsNull(final UserResponse user) {
+        MobilePhone mobilePhone = user.getUsersMobilePhone();
+        if (mobilePhone == null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

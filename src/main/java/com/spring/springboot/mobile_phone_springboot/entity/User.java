@@ -21,6 +21,13 @@ public class User {
     private String surname;
     @Column(name = "age")
     private int age;
-    @Column(name = "mobile_phone_id")
-    private Integer mobilePhoneId;
+    @ManyToOne(
+        cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.DETACH},
+        fetch = FetchType.EAGER)
+    @JoinColumn(name = "mobile_phone_id")
+    private MobilePhone usersMobilePhone;
 }

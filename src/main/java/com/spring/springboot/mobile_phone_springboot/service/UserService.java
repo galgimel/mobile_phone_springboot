@@ -13,4 +13,5 @@ public interface UserService {
     void saveUser(User user);
 
     void deleteUser(int id);
+    boolean usersMobilePhoneIsNull(UserResponse user);
 }

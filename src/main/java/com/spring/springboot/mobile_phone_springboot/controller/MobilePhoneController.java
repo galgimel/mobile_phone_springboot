@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class MobilePhoneController {
-    private MobilePhoneService mobilePhoneService;
+    private final MobilePhoneService mobilePhoneService;
 
     @Autowired
     public MobilePhoneController(MobilePhoneService mobilePhoneService){
@@ -35,9 +35,8 @@ public class MobilePhoneController {
 
     @GetMapping("/mobile_phones/{id}")
     public String getMobilePhone(@PathVariable int id, Model model) {
-        model.addAttribute("mobilePhone", mobilePhoneService.getMobilePhone(id));
-
-        return "mobilePhone-profile";
+            model.addAttribute("mobilePhone", mobilePhoneService.getMobilePhone(id));
+            return "mobilePhone-profile";
     }
 
     @GetMapping("/addNewMobilePhone")

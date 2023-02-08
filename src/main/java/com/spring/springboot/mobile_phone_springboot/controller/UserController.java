@@ -2,6 +2,7 @@ package com.spring.springboot.mobile_phone_springboot.controller;
 
 import com.spring.springboot.mobile_phone_springboot.entity.User;
 import com.spring.springboot.mobile_phone_springboot.response.UserResponse;
+import com.spring.springboot.mobile_phone_springboot.service.MobilePhoneService;
 import com.spring.springboot.mobile_phone_springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,11 +13,24 @@ import java.util.List;
 
 @Controller
 public class UserController {
-    final private UserService userService;
+    private final UserService userService;
+    private final MobilePhoneService mobilePhoneService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, MobilePhoneService mobilePhoneService) {
         this.userService = userService;
+        this.mobilePhoneService = mobilePhoneService;
+    }
+
+    @GetMapping("/phoneCheck/{id}")
+    public String noPhoneException(@PathVariable int id, Model model) {
+        if (userService.usersMobilePhoneIsNull(userService.getUser(id))) {
+            return "user-NoPhoneException";
+        }
+        model.addAttribute("mobilePhone",
+            mobilePhoneService.getMobilePhone
+                (userService.getUser(id).getUsersMobilePhone().getId()));
+        return "mobilePhone-profile";
     }
 
     @GetMapping("/users")

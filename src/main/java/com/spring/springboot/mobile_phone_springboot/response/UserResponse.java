@@ -1,5 +1,6 @@
 package com.spring.springboot.mobile_phone_springboot.response;
 
+import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
 import com.spring.springboot.mobile_phone_springboot.entity.User;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,14 +16,14 @@ public class UserResponse {
     private String name;
     private String surname;
     private int age;
-    private Integer mobilePhoneId;
+    private MobilePhone usersMobilePhone;
     public static UserResponse getUserResponse(User user) {
         return UserResponse.builder()
             .id(user.getId())
             .name(user.getName())
             .surname(user.getSurname())
             .age(user.getAge())
-            .mobilePhoneId(user.getMobilePhoneId())
+            .usersMobilePhone(user.getUsersMobilePhone())
             .build();
     }
 }
