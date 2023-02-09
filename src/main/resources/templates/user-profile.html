@@ -19,6 +19,10 @@
         <td>Age:</td>
         <td><p th:text="${user.getAge()}"/></td>
     </tr>
+    <tr>
+        <td>Mobile Phone:</td>
+        <td><p th:text="${user.getMobilePhoneResponse().toString()}">/></td>
+    </tr>
 </table>
 <br>
 <hr>
@@ -40,7 +44,7 @@
             </form>
         </td>
         <td>
-            <form th:method="GET" th:action="@{/phoneCheck/{id}(id=${user.getId()})}">
+            <form th:method="GET" th:action="@{/mobile_phones/{mobilePhoneId}(mobilePhoneId=${user.getMobilePhoneResponse().getId()})}">
                 <input type="submit" value="About Phone"/>
             </form>
         </td>

@@ -35,6 +35,9 @@ public class MobilePhoneController {
 
     @GetMapping("/mobile_phones/{id}")
     public String getMobilePhone(@PathVariable int id, Model model) {
+        if (id == 0) {
+            return "redirect:/mobile_phones";
+        }
             model.addAttribute("mobilePhone", mobilePhoneService.getMobilePhone(id));
             return "mobilePhone-profile";
     }

@@ -1,6 +1,5 @@
 package com.spring.springboot.mobile_phone_springboot.service;
 
-import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
 import com.spring.springboot.mobile_phone_springboot.entity.User;
 import com.spring.springboot.mobile_phone_springboot.repository.UserRepository;
 import com.spring.springboot.mobile_phone_springboot.response.UserResponse;
@@ -46,16 +45,5 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteUser(final int id) {
         userRepository.deleteById(id);
-    }
-
-    @Override
-    @Transactional
-    public boolean usersMobilePhoneIsNull(final UserResponse user) {
-        MobilePhone mobilePhone = user.getUsersMobilePhone();
-        if (mobilePhone == null) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }

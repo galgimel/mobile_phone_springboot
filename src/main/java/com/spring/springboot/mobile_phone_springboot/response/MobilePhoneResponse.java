@@ -5,7 +5,6 @@ import lombok.*;
 
 @Getter
 @Setter
-@ToString
 @Builder
 public class MobilePhoneResponse {
     private int id;
@@ -21,5 +20,9 @@ public class MobilePhoneResponse {
             .performance(mobilePhone.getPerformance())
             .price(mobilePhone.getPrice())
             .build();
+    }
+    @Override
+    public String toString() {
+        return brand + " " + model;
     }
 }

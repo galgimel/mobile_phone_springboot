@@ -1,11 +1,7 @@
 package com.spring.springboot.mobile_phone_springboot.response;
 
-import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
 import com.spring.springboot.mobile_phone_springboot.entity.User;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
@@ -16,14 +12,27 @@ public class UserResponse {
     private String name;
     private String surname;
     private int age;
-    private MobilePhone usersMobilePhone;
+    private MobilePhoneResponse mobilePhoneResponse;
+
     public static UserResponse getUserResponse(User user) {
-        return UserResponse.builder()
+        UserResponse userResponse = UserResponse.builder()
             .id(user.getId())
             .name(user.getName())
             .surname(user.getSurname())
             .age(user.getAge())
-            .usersMobilePhone(user.getUsersMobilePhone())
             .build();
+        if (user.getUsersMobilePhone() == null) {
+            userResponse.setMobilePhoneResponse(
+                MobilePhoneResponse.builder()
+                    .brand("No")
+                    .model("Phone")
+                    .build());
+        } else {
+            userResponse.setMobilePhoneResponse(
+                MobilePhoneResponse
+                    .getMobilePhoneResponse
+                        (user.getUsersMobilePhone()));
+        }
+        return userResponse;
     }
 }

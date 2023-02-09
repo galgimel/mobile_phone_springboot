@@ -28,7 +28,7 @@ public class MobilePhone {
         CascadeType.MERGE,
         CascadeType.REFRESH,
         CascadeType.DETACH},
-        mappedBy = "usersMobilePhone",
         fetch = FetchType.LAZY)
+    @JoinColumn(name = "mobile_phone_id")
     private List<User> users;
 }
