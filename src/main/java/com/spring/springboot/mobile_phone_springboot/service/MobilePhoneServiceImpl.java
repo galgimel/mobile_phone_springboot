@@ -1,7 +1,6 @@
 package com.spring.springboot.mobile_phone_springboot.service;
 
 import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
-import com.spring.springboot.mobile_phone_springboot.entity.User;
 import com.spring.springboot.mobile_phone_springboot.repository.MobilePhoneRepository;
 import com.spring.springboot.mobile_phone_springboot.response.MobilePhoneResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +45,6 @@ public class MobilePhoneServiceImpl implements MobilePhoneService {
     @Override
     @Transactional
     public void deleteMobilePhone(final int id) {
-        for (User user : mobilePhoneRepository.findById(id).get().getUsers()) {
-            user.setUsersMobilePhone(null);
-        }
         mobilePhoneRepository.deleteById(id);
     }
 }
