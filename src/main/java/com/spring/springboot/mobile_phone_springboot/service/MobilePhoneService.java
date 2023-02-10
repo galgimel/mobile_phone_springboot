@@ -7,7 +7,10 @@ import java.util.List;
 
 public interface MobilePhoneService {
     List<MobilePhoneResponse> getAllMobilePhones();
-    void saveMobilePhone(MobilePhone mobilePhone);
+
     MobilePhoneResponse getMobilePhone(int id);
+
+    void saveMobilePhone(MobilePhone mobilePhone);
+
     void deleteMobilePhone(int id);
 }

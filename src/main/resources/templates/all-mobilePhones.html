@@ -12,7 +12,7 @@
             <td><p th:text="${mobilePhone.getBrand()}"/></td>
             <td><p th:text="${mobilePhone.getModel()}"/></td>
             <td>
-                <form th:method="GET" th:action="@{mobile_phones/{id}(id=${mobilePhone.getId()})}">
+                <form th:method="GET" th:action="@{/mobile_phones/{id}(id=${mobilePhone.getId()})}">
                     <input type="submit" value="More"/>
                 </form>
             </td>

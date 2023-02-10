@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body>
+<h1 th:text="'Change info:'"></h1>
+<form th:method="PUT" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
+    <label for="surname">Surname</label>
+    <input type="text" th:field="*{surname}" id="surname"/>
+    <br/>
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <label for="age">Age</label>
+    <input type="text" th:field="*{age}" id="age"/>
+    <br/>
+    <label for="usersMobilePhone">Mobile Phone ID</label>
+    <input type="text" th:field="*{getMobilePhoneResponse}" id="usersMobilePhone"/>
+    <br/>
+    <input type="button" value="Main View"
+           onclick="window.location.href = '/'"/>
+    <input type="button" value="All users"
+           onclick="window.location.href = '/users'"/>
+    <input type="submit" value="Update">
+</form>
+</body>
+</html>
