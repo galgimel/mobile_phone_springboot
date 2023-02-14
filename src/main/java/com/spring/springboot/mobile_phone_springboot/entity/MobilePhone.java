@@ -31,4 +31,18 @@ public class MobilePhone {
         fetch = FetchType.LAZY)
     @JoinColumn(name = "mobile_phone_id")
     private List<User> users;
+    @ManyToMany(
+        cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.DETACH
+        }
+    )
+    @JoinTable(
+        name = "mobile_phone_store",
+        joinColumns = @JoinColumn(name = "mobile_phone_id"),
+        inverseJoinColumns = @JoinColumn(name = "store_id")
+    )
+    private List<Store> stores;
 }

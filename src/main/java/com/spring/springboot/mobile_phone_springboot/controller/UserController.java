@@ -23,20 +23,20 @@ public class UserController {
         List<UserResponse> allUsers = userService.getAllUsers();
         model.addAttribute("allUsers", allUsers);
 
-        return "all-users";
+        return "/user/all-users.html";
     }
 
     @GetMapping("/users/{id}")
     public String getUser(@PathVariable int id, Model model) {
         model.addAttribute("user", userService.getUser(id));
 
-        return "user-profile";
+        return "/user/user-profile.html";
     }
 
     @GetMapping("/addNewUser")
     public String addNewUser(@ModelAttribute("user") User user) {
 
-        return "user-create";
+        return "/user/user-create.html";
     }
 
     @PostMapping("/users")
@@ -50,7 +50,7 @@ public class UserController {
     public String updateUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUser(id));
 
-        return "user-update";
+        return "/user/user-update.html";
     }
 
     @PutMapping("/users/{id}")

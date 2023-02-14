@@ -6,11 +6,12 @@ import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
 import java.util.List;
 
 public interface MobilePhoneService {
+
     List<MobilePhoneResponse> getAllMobilePhones();
 
-    MobilePhoneResponse getMobilePhone(int id);
+    MobilePhoneResponse getMobilePhone(final int id);
 
-    void saveMobilePhone(MobilePhone mobilePhone);
+    void saveMobilePhone(final MobilePhone mobilePhone);
 
-    void deleteMobilePhone(int id);
+    void deleteMobilePhone(final int id);
 }

@@ -30,7 +30,7 @@ public class MobilePhoneController {
         List<MobilePhoneResponse> allMobilePhones = mobilePhoneService.getAllMobilePhones();
         model.addAttribute("allMobilePhones", allMobilePhones);
 
-        return "all-mobilePhones";
+        return "/mobilePhone/all-mobilePhones.html";
     }
 
     @GetMapping("/mobile_phones/{id}")
@@ -39,13 +39,13 @@ public class MobilePhoneController {
             return "redirect:/mobile_phones";
         }
             model.addAttribute("mobilePhone", mobilePhoneService.getMobilePhone(id));
-            return "mobilePhone-profile";
+            return "/mobilePhone/mobilePhone-profile.html";
     }
 
     @GetMapping("/addNewMobilePhone")
     public String addNewMobilePhone(@ModelAttribute("mobilePhone") MobilePhone mobilePhone) {
 
-        return "mobilePhone-create";
+        return "/mobilePhone/mobilePhone-create.html";
     }
 
     @PostMapping("/mobile_phones")
@@ -59,7 +59,7 @@ public class MobilePhoneController {
     public String updateMobilePhone(@PathVariable("id") int id, Model model) {
         model.addAttribute("mobilePhone", mobilePhoneService.getMobilePhone(id));
 
-        return "mobilePhone-update";
+        return "/mobilePhone/mobilePhone-update.html";
     }
 
     @PutMapping("/mobile_phones/{id}")

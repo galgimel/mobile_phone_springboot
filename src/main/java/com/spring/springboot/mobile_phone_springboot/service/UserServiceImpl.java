@@ -25,7 +25,8 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public List<UserResponse> getAllUsers() {
         return userRepository.findAll().stream()
-            .map(user -> getUserResponse(user)).collect(Collectors.toList());
+            .map(user -> getUserResponse(user))
+            .collect(Collectors.toList());
     }
 
     @Override

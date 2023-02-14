@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<h2 th:text="'All Mobile Phones in Store:'"></h2>
+<table>
+    <tr th:each="mobilePhone : ${allMobilePhones}">
+        <td><p th:text="${mobilePhone.getBrand()}"/></td>
+        <td><p th:text="${mobilePhone.getModel()}"/></td>
+        <td>
+            <form th:method="GET" th:action="@{/mobile_phones/{id}(id=${mobilePhone.getId()})}">
+                <input type="submit" value="More"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{/stores/{storeID}(storeID=${})}"
+                  th:object="${mobilePhone}">
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+</table>
+<br>
+<hr>
+<table>
+    <tr>
+        <td>
+            <input type="button" value="Main View"
+                   onclick="window.location.href = '/'"/>
+        </td>
+        <td>
+            <input type="button" value="Stores"
+                   onclick="window.location.href = '/stores'"/>
+        </td>
+        <td>
+            <form th:method="GET" th:action="@{/addMobilePhoneToStore/{storeID}(storeID=${})}">
+                <input type="submit" value="Add"/>
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

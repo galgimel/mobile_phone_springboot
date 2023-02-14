@@ -2,6 +2,9 @@ package com.spring.springboot.mobile_phone_springboot.response;
 
 import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
 import lombok.*;
+import org.springframework.data.annotation.Transient;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,6 +15,8 @@ public class MobilePhoneResponse {
     private String model;
     private int performance;
     private int price;
+    @Transient
+    List<StoreResponse> storeResponses;
     public static MobilePhoneResponse getMobilePhoneResponse(MobilePhone mobilePhone) {
         return MobilePhoneResponse.builder()
             .id(mobilePhone.getId())

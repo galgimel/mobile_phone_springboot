@@ -26,7 +26,8 @@ public class MobilePhoneServiceImpl implements MobilePhoneService {
     @Transactional
     public List<MobilePhoneResponse> getAllMobilePhones() {
         return mobilePhoneRepository.findAll().stream()
-            .map(mobilePhone -> getMobilePhoneResponse(mobilePhone)).collect(Collectors.toList());
+            .map(mobilePhone -> getMobilePhoneResponse(mobilePhone))
+            .collect(Collectors.toList());
     }
 
     @Override
