@@ -1,12 +1,14 @@
 package com.spring.springboot.mobile_phone_springboot.controller;
 
-import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
 import com.spring.springboot.mobile_phone_springboot.response.StoreResponse;
 import com.spring.springboot.mobile_phone_springboot.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -31,6 +33,8 @@ public class StoreController {
     public String showAllMobilePhonesInStore(@PathVariable int storeID, Model model) {
         model.addAttribute("allMobilePhones",
             storeService.getAllMobilePhonesInStore(storeID));
+        model.addAttribute("ID", storeID);
+
         return "/store/store-range-list.html";
     }
 
@@ -38,20 +42,25 @@ public class StoreController {
     public String addMobilePhoneToStore(@PathVariable("storeID") int storeID, Model model) {
         model.addAttribute("allMobilePhones",
             storeService.getAllMobilePhonesOutOfStore(storeID));
+        model.addAttribute("ID", storeID);
+
         return "/store/store-range-update.html";
     }
 
-    @PutMapping("/stores/{storeID}")
+    @PostMapping("/stores/{storeID}-{mobilePhoneID}")
     public String saveMobilePhoneInStore(@PathVariable("storeID") int storeID,
-                                         @ModelAttribute("mobilePhone") MobilePhone mobilePhone) {
-        storeService.saveMobilePhoneToStore(storeID, mobilePhone);
-        return "redirect:/stores/{storeID}";
+                                         @PathVariable("mobilePhoneID") int mobilePhoneID) {
+        storeService.getAllMobilePhonesOutOfStore(storeID);
+        storeService.saveMobilePhoneToStore(storeID, mobilePhoneID);
+
+        return "redirect:/addMobilePhoneToStore/{storeID}";
     }
 
-    @DeleteMapping("/stores/{storeID}")
+    @DeleteMapping("/stores/{storeID}-{mobilePhoneID}")
     public String deleteMobilePhoneFromStore(@PathVariable("storeID") int storeID,
-                                             @ModelAttribute("mobilePhone") MobilePhone mobilePhone) {
-        storeService.deleteMobilePhoneFromStore(storeID, mobilePhone);
+                                             @PathVariable("mobilePhoneID") int mobilePhoneID) {
+        storeService.deleteMobilePhoneFromStore(storeID, mobilePhoneID);
+
         return "redirect:/stores/{storeID}";
     }
 }

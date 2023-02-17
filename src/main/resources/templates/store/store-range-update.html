@@ -12,7 +12,8 @@
         <td><p th:text="${mobilePhone.getBrand()}"/></td>
         <td><p th:text="${mobilePhone.getModel()}"/></td>
         <td>
-            <form th:method="PUT" th:action="@{/stores/{storeID}(storeId=)}">
+            <form th:method="POST" th:action="@{/stores/{storeID}-{mobilePhoneID}
+            (storeID=${ID}, mobilePhoneID=${mobilePhone.getId()})}">
                 <input type="submit" value="Add to Store"/>
             </form>
         </td>

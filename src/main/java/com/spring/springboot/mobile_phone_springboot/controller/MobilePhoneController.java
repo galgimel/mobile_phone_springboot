@@ -72,6 +72,7 @@ public class MobilePhoneController {
     @DeleteMapping("/mobile_phones/{id}")
     public String deleteMobilePhone(@PathVariable("id") int id) {
         mobilePhoneService.deleteMobilePhone(id);
+
         return "redirect:/mobile_phones";
     }
 }

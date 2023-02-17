@@ -12,9 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.spring.springboot.mobile_phone_springboot.response.MobilePhoneResponse.getMobilePhoneResponse;
-import static com.spring.springboot.mobile_phone_springboot.response.StoreResponse.getStoreResponse;
-
 @Service
 public class StoreServiceImpl implements StoreService {
     private final StoreRepository storeRepository;
@@ -31,7 +28,7 @@ public class StoreServiceImpl implements StoreService {
     @Transactional
     public List<StoreResponse> getAllStores() {
         return storeRepository.findAll().stream()
-            .map(store -> getStoreResponse(store))
+            .map(StoreResponse::getStoreResponse)
             .collect(Collectors.toList());
     }
 
@@ -40,7 +37,7 @@ public class StoreServiceImpl implements StoreService {
     public List<MobilePhoneResponse> getAllMobilePhonesInStore(final int storeID) {
         return mobilePhonesFromStore(storeID)
             .stream()
-            .map(mobilePhone -> getMobilePhoneResponse(mobilePhone))
+            .map(MobilePhoneResponse::getMobilePhoneResponse)
             .collect(Collectors.toList());
     }
 
@@ -50,20 +47,20 @@ public class StoreServiceImpl implements StoreService {
         return mobilePhoneRepository.findAll()
             .stream()
             .filter(mobilePhone -> !mobilePhonesFromStore(storeID).contains(mobilePhone))
-            .map(mobilePhone -> getMobilePhoneResponse(mobilePhone))
+            .map(MobilePhoneResponse::getMobilePhoneResponse)
             .collect(Collectors.toList());
     }
 
     @Override
     @Transactional
-    public void saveMobilePhoneToStore(final int storeID, final MobilePhone mobilePhone) {
-        mobilePhonesFromStore(storeID).add(mobilePhone);
+    public void saveMobilePhoneToStore(final int storeID, final int mobilePhoneID) {
+        mobilePhonesFromStore(storeID).add(mobilePhoneRepository.getById(mobilePhoneID));
     }
 
     @Override
     @Transactional
-    public void deleteMobilePhoneFromStore(final int storeID, final MobilePhone mobilePhone) {
-        mobilePhonesFromStore(storeID).remove(mobilePhone);
+    public void deleteMobilePhoneFromStore(final int storeID, final int mobilePhoneID) {
+        mobilePhonesFromStore(storeID).remove(mobilePhoneRepository.getById(mobilePhoneID));
     }
 
     private List<MobilePhone> mobilePhonesFromStore(final int storeID) {
