@@ -9,10 +9,10 @@ import lombok.Setter;
 @Setter
 @Builder
 public class StoreResponse {
-    int id;
-    String name;
+    private final int id;
+    private final String name;
 
-    public static StoreResponse getStoreResponse(Store store) {
+    public static StoreResponse getStoreResponse(final Store store) {
         return StoreResponse.builder()
             .id(store.getId())
             .name(store.getName())

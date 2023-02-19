@@ -35,10 +35,10 @@
         </td>
         <td>
             <input type="button" value="Stores"
-                   onclick="window.location.href = '/stores'"/>
+                   onclick="window.location.href = '/stores/'"/>
         </td>
         <td>
-            <form th:method="GET" th:action="@{/addMobilePhoneToStore/{storeID}(storeID=${ID})}">
+            <form th:method="GET" th:action="@{addMobilePhoneToStore/{storeID}(storeID=${ID})}">
                 <input type="submit" value="Add"/>
             </form>
         </td>

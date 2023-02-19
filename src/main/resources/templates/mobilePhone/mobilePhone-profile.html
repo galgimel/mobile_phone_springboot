@@ -37,7 +37,7 @@
                    onclick="window.location.href = '/'"/>
         </td>
         <td>
-            <form th:method="GET" th:action="@{/updateMobilePhone/{id}(id=${mobilePhone.getId()})}">
+            <form th:method="GET" th:action="@{updateMobilePhone/{id}(id=${mobilePhone.getId()})}">
                 <input type="submit" value="Edit"/>
             </form>
         </td>
@@ -49,15 +49,15 @@
         </td>
         <td>
             <input type="button" value="Stores"
-                   onclick="window.location.href = '/stores'"/>
+                   onclick="window.location.href = '/stores/'"/>
         </td>
         <td>
             <input type="button" value="Users"
-                   onclick="window.location.href = '/users'"/>
+                   onclick="window.location.href = '/users/'"/>
         </td>
         <td>
             <input type="button" value="Mobile Phones"
-                   onclick="window.location.href = '/mobile_phones'"/>
+                   onclick="window.location.href = '/mobile_phones/'"/>
         </td>
     </tr>
 </table>

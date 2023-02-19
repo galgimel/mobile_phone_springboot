@@ -7,7 +7,7 @@
 <body>
 <h1 th:text="'Create User:'"></h1>
 <br>
-<form th:method="POST" th:action="@{/users}" th:object="${user}">
+<form th:method="POST" th:action="@{/users/}" th:object="${user}">
     <label for="surname">Surname</label>
     <input type="text" th:field="*{surname}" id="surname"/>
     <br/>
@@ -23,7 +23,7 @@
     <input type="button" value="Main View"
            onclick="window.location.href = '/'"/>
     <input type="button" value="Users"
-           onclick="window.location.href = '/users'"/>
+           onclick="window.location.href = '/users/'"/>
     <input type="submit" value="Save">
 </form>
 </body>

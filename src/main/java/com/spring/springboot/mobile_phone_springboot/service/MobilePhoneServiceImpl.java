@@ -10,15 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.spring.springboot.mobile_phone_springboot.response.MobilePhoneResponse.getMobilePhoneResponse;
-
-
 @Service
 public class MobilePhoneServiceImpl implements MobilePhoneService {
     private final MobilePhoneRepository mobilePhoneRepository;
 
     @Autowired
-    public MobilePhoneServiceImpl(MobilePhoneRepository mobilePhoneRepository) {
+    public MobilePhoneServiceImpl(final MobilePhoneRepository mobilePhoneRepository) {
         this.mobilePhoneRepository = mobilePhoneRepository;
     }
 
@@ -26,7 +23,7 @@ public class MobilePhoneServiceImpl implements MobilePhoneService {
     @Transactional
     public List<MobilePhoneResponse> getAllMobilePhones() {
         return mobilePhoneRepository.findAll().stream()
-            .map(mobilePhone -> getMobilePhoneResponse(mobilePhone))
+            .map(MobilePhoneResponse::getMobilePhoneResponse)
             .collect(Collectors.toList());
     }
 
@@ -34,7 +31,7 @@ public class MobilePhoneServiceImpl implements MobilePhoneService {
     @Transactional
     public MobilePhoneResponse getMobilePhone(final int id) {
         final MobilePhone mobilePhone = mobilePhoneRepository.getReferenceById(id);
-        return getMobilePhoneResponse(mobilePhone);
+        return MobilePhoneResponse.getMobilePhoneResponse(mobilePhone);
     }
 
     @Override

@@ -28,6 +28,6 @@ public class User {
             CascadeType.REFRESH,
             CascadeType.DETACH},
         fetch = FetchType.EAGER)
-    @JoinColumn(name = "mobile_phone_id")
+    @JoinColumn(name = "users_mobile_phone_id")
     private MobilePhone usersMobilePhone;
 }

@@ -14,7 +14,7 @@ VALUES ('iPhone', '14PRO', 11, 1500),
        ('Huawei', 'P50 Pocket', 11, 1600),
        ('Realme', 'GT2 PRO12', 9, 1200),
        ('Nokia', '5310DS', 2, 150);
-INSERT INTO users (name, surname, age, mobile_phone_id)
+INSERT INTO users (name, surname, age, users_mobile_phone_id)
 VALUES ('Григорий', 'Лепс', 60, 1),
        ('Анна', 'Агутина', 45, 6),
        ('Гари', 'Стайлз', 77, 15),

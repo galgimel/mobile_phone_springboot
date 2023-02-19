@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS users
     name            VARCHAR(20),
     surname         VARCHAR(20),
     age             INT,
-    mobile_phone_id INT,
-    FOREIGN KEY (mobile_phone_id)
+    users_mobile_phone_id INT,
+    FOREIGN KEY (users_mobile_phone_id)
         REFERENCES mobile_phones (id)
 );
 CREATE TABLE stores

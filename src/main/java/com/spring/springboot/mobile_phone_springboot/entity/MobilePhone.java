@@ -29,7 +29,7 @@ public class MobilePhone {
         CascadeType.REFRESH,
         CascadeType.DETACH},
         fetch = FetchType.LAZY)
-    @JoinColumn(name = "mobile_phone_id")
+    @JoinColumn(name = "users_mobile_phone_id")
     private List<User> users;
     @ManyToMany(
         cascade = {

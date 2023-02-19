@@ -5,60 +5,58 @@ import com.spring.springboot.mobile_phone_springboot.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/stores/")
 public class StoreController {
     private final StoreService storeService;
 
     @Autowired
-    public StoreController(StoreService storeService) {
+    public StoreController(final StoreService storeService) {
         this.storeService = storeService;
     }
 
-    @GetMapping("/stores")
-    public String showAllStores(Model model) {
+    @GetMapping
+    public String showAllStores(final Model model) {
         List<StoreResponse> allStores = storeService.getAllStores();
         model.addAttribute("allStores", allStores);
 
-        return "/store/all-stores.html";
+        return "/store/all-stores";
     }
 
-    @GetMapping("/stores/{storeID}")
-    public String showAllMobilePhonesInStore(@PathVariable int storeID, Model model) {
+    @GetMapping("{storeID}")
+    public String showAllMobilePhonesInStore(@PathVariable final int storeID, final Model model) {
         model.addAttribute("allMobilePhones",
             storeService.getAllMobilePhonesInStore(storeID));
         model.addAttribute("ID", storeID);
 
-        return "/store/store-range-list.html";
+        return "/store/store-range-list";
     }
 
-    @GetMapping("/addMobilePhoneToStore/{storeID}")
-    public String addMobilePhoneToStore(@PathVariable("storeID") int storeID, Model model) {
+    @GetMapping("addMobilePhoneToStore/{storeID}")
+    public String addMobilePhoneToStore(@PathVariable("storeID") final int storeID, final Model model) {
         model.addAttribute("allMobilePhones",
             storeService.getAllMobilePhonesOutOfStore(storeID));
         model.addAttribute("ID", storeID);
 
-        return "/store/store-range-update.html";
+        return "/store/store-range-update";
     }
 
-    @PostMapping("/stores/{storeID}-{mobilePhoneID}")
-    public String saveMobilePhoneInStore(@PathVariable("storeID") int storeID,
-                                         @PathVariable("mobilePhoneID") int mobilePhoneID) {
+    @PostMapping("{storeID}-{mobilePhoneID}")
+    public String saveMobilePhoneInStore(@PathVariable("storeID") final int storeID,
+                                         @PathVariable("mobilePhoneID") final int mobilePhoneID) {
         storeService.getAllMobilePhonesOutOfStore(storeID);
         storeService.saveMobilePhoneToStore(storeID, mobilePhoneID);
 
-        return "redirect:/addMobilePhoneToStore/{storeID}";
+        return "redirect:addMobilePhoneToStore/{storeID}";
     }
 
-    @DeleteMapping("/stores/{storeID}-{mobilePhoneID}")
-    public String deleteMobilePhoneFromStore(@PathVariable("storeID") int storeID,
-                                             @PathVariable("mobilePhoneID") int mobilePhoneID) {
+    @DeleteMapping("{storeID}-{mobilePhoneID}")
+    public String deleteMobilePhoneFromStore(@PathVariable("storeID") final int storeID,
+                                             @PathVariable("mobilePhoneID") final int mobilePhoneID) {
         storeService.deleteMobilePhoneFromStore(storeID, mobilePhoneID);
 
         return "redirect:/stores/{storeID}";

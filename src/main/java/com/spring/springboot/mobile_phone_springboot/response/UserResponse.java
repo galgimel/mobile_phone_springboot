@@ -8,13 +8,13 @@ import lombok.*;
 @ToString
 @Builder
 public class UserResponse {
-    private int id;
-    private String name;
-    private String surname;
-    private int age;
+    private final int id;
+    private final String name;
+    private final String surname;
+    private final int age;
     private MobilePhoneResponse mobilePhoneResponse;
 
-    public static UserResponse getUserResponse(User user) {
+    public static UserResponse getUserResponse(final User user) {
         UserResponse userResponse = UserResponse.builder()
             .id(user.getId())
             .name(user.getName())

@@ -18,8 +18,8 @@ public class StoreServiceImpl implements StoreService {
     private final MobilePhoneRepository mobilePhoneRepository;
 
     @Autowired
-    public StoreServiceImpl(StoreRepository storeRepository,
-                            MobilePhoneRepository mobilePhoneRepository) {
+    public StoreServiceImpl(final StoreRepository storeRepository,
+                            final MobilePhoneRepository mobilePhoneRepository) {
         this.storeRepository = storeRepository;
         this.mobilePhoneRepository = mobilePhoneRepository;
     }
@@ -54,16 +54,16 @@ public class StoreServiceImpl implements StoreService {
     @Override
     @Transactional
     public void saveMobilePhoneToStore(final int storeID, final int mobilePhoneID) {
-        mobilePhonesFromStore(storeID).add(mobilePhoneRepository.getById(mobilePhoneID));
+        mobilePhonesFromStore(storeID).add(mobilePhoneRepository.getReferenceById(mobilePhoneID));
     }
 
     @Override
     @Transactional
     public void deleteMobilePhoneFromStore(final int storeID, final int mobilePhoneID) {
-        mobilePhonesFromStore(storeID).remove(mobilePhoneRepository.getById(mobilePhoneID));
+        mobilePhonesFromStore(storeID).remove(mobilePhoneRepository.getReferenceById(mobilePhoneID));
     }
 
     private List<MobilePhone> mobilePhonesFromStore(final int storeID) {
-        return storeRepository.findById(storeID).get().getMobilePhones();
+        return storeRepository.findById(storeID).orElseThrow().getMobilePhones();
     }
 }
