@@ -1,67 +1,64 @@
 package com.spring.springboot.mobile_phone_springboot.controller;
 
 import com.spring.springboot.mobile_phone_springboot.entity.User;
-import com.spring.springboot.mobile_phone_springboot.response.UserResponse;
 import com.spring.springboot.mobile_phone_springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(final UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
-    public String showAllUsers(Model model) {
-        List<UserResponse> allUsers = userService.getAllUsers();
-        model.addAttribute("allUsers", allUsers);
+    @GetMapping
+    public String showAllUsers(final Model model) {
+        model.addAttribute("allUsers", userService.getAllUsers());
 
-        return "all-users";
+        return "/user/all-users";
     }
 
-    @GetMapping("/users/{id}")
-    public String getUser(@PathVariable int id, Model model) {
+    @GetMapping("/{id}")
+    public String getUser(@PathVariable final int id, final Model model) {
         model.addAttribute("user", userService.getUser(id));
 
-        return "user-profile";
+        return "/user/user-profile";
     }
 
     @GetMapping("/addNewUser")
-    public String addNewUser(@ModelAttribute("user") User user) {
+    public String addNewUser(@ModelAttribute("user") final User user) {
 
-        return "user-create";
+        return "/user/user-create";
     }
 
-    @PostMapping("/users")
-    public String saveUser(@ModelAttribute("user") User user) {
+    @PostMapping
+    public String saveUser(@ModelAttribute("user") final User user) {
         userService.saveUser(user);
 
         return "redirect:/users";
     }
 
     @GetMapping("/updateUser/{id}")
-    public String updateUser(@PathVariable("id") int id, Model model) {
+    public String updateUser(@PathVariable("id") final int id, final Model model) {
         model.addAttribute("user", userService.getUser(id));
 
-        return "user-update";
+        return "/user/user-update";
     }
 
-    @PutMapping("/users/{id}")
-    public String saveUpdatedUser(@ModelAttribute("user") User user) {
+    @PutMapping("/{id}")
+    public String saveUpdatedUser(@ModelAttribute("user") final User user) {
         userService.saveUser(user);
 
         return "redirect:/users";
     }
 
-    @DeleteMapping("/users/{id}")
-    public String deleteUser(@PathVariable("id") int id) {
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable("id") final int id) {
         userService.deleteUser(id);
         return "redirect:/users";
     }

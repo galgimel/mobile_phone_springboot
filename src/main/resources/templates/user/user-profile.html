@@ -33,7 +33,7 @@
                    onclick="window.location.href = '/'"/>
         </td>
         <td>
-            <form th:method="GET" th:action="@{/updateUser/{id}(id=${user.getId()})}">
+            <form th:method="GET" th:action="@{/users/updateUser/{id}(id=${user.getId()})}">
                 <input type="submit" value="Edit"/>
             </form>
         </td>
@@ -49,7 +49,7 @@
             </form>
         </td>
         <td>
-            <input type="button" value="All users"
+            <input type="button" value="Users"
                    onclick="window.location.href = '/users'"/>
         </td>
     </tr>

@@ -1,18 +1,20 @@
 package com.spring.springboot.mobile_phone_springboot.response;
 
 import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
 @Builder
 public class MobilePhoneResponse {
-    private int id;
-    private String brand;
-    private String model;
-    private int performance;
-    private int price;
-    public static MobilePhoneResponse getMobilePhoneResponse(MobilePhone mobilePhone) {
+    private final int id;
+    private final String brand;
+    private final String model;
+    private final int performance;
+    private final int price;
+    public static MobilePhoneResponse of(final MobilePhone mobilePhone) {
         return MobilePhoneResponse.builder()
             .id(mobilePhone.getId())
             .brand(mobilePhone.getBrand())

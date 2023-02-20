@@ -24,11 +24,28 @@ public class MobilePhone {
     @Column(name = "price")
     private int price;
     @OneToMany(
-        cascade = {CascadeType.PERSIST,
-        CascadeType.MERGE,
-        CascadeType.REFRESH,
-        CascadeType.DETACH},
-        fetch = FetchType.LAZY)
-    @JoinColumn(name = "mobile_phone_id")
+        cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.DETACH
+        },
+        fetch = FetchType.LAZY
+    )
+    @JoinColumn(name = "users_mobile_phone_id")
     private List<User> users;
+    @ManyToMany(
+        cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.DETACH
+        }
+    )
+    @JoinTable(
+        name = "mobile_phone_store",
+        joinColumns = @JoinColumn(name = "mobile_phone_id"),
+        inverseJoinColumns = @JoinColumn(name = "store_id")
+    )
+    private List<Store> stores;
 }

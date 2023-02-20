@@ -14,7 +14,7 @@ VALUES ('iPhone', '14PRO', 11, 1500),
        ('Huawei', 'P50 Pocket', 11, 1600),
        ('Realme', 'GT2 PRO12', 9, 1200),
        ('Nokia', '5310DS', 2, 150);
-INSERT INTO users (name, surname, age, mobile_phone_id)
+INSERT INTO users (name, surname, age, users_mobile_phone_id)
 VALUES ('Григорий', 'Лепс', 60, 1),
        ('Анна', 'Агутина', 45, 6),
        ('Гари', 'Стайлз', 77, 15),
@@ -30,3 +30,28 @@ VALUES ('Григорий', 'Лепс', 60, 1),
        ('Агата', 'Кристи', 56, 9),
        ('Людмила', 'Онегина', 21, 2),
        ('Екатерина', 'Павловна', 19, 4);
+INSERT INTO stores (name)
+VALUES ('APPLE_Store'),
+       ('SAMSUNG'),
+       ('MVideo');
+INSERT INTO mobile_phone_store(store_id, mobile_phone_id)
+VALUES (1, 1),
+       (1, 2),
+       (1, 3),
+       (1, 4),
+       (1, 5),
+       (2, 6),
+       (2, 7),
+       (2, 8),
+       (2, 9),
+       (2, 10),
+       (3, 11),
+       (3, 12),
+       (3, 13),
+       (3, 14),
+       (3, 15),
+       (3, 1),
+       (3, 2),
+       (3, 6),
+       (3, 7),
+       (3, 8);

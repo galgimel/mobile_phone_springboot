@@ -6,6 +6,7 @@ import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
 import java.util.List;
 
 public interface MobilePhoneService {
+
     List<MobilePhoneResponse> getAllMobilePhones();
 
     MobilePhoneResponse getMobilePhone(int id);

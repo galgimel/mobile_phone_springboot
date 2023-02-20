@@ -8,13 +8,13 @@ import lombok.*;
 @ToString
 @Builder
 public class UserResponse {
-    private int id;
-    private String name;
-    private String surname;
-    private int age;
+    private final int id;
+    private final String name;
+    private final String surname;
+    private final int age;
     private MobilePhoneResponse mobilePhoneResponse;
 
-    public static UserResponse getUserResponse(User user) {
+    public static UserResponse of(final User user) {
         UserResponse userResponse = UserResponse.builder()
             .id(user.getId())
             .name(user.getName())
@@ -26,12 +26,10 @@ public class UserResponse {
                 MobilePhoneResponse.builder()
                     .brand("No")
                     .model("Phone")
-                    .build());
+                    .build()
+            );
         } else {
-            userResponse.setMobilePhoneResponse(
-                MobilePhoneResponse
-                    .getMobilePhoneResponse
-                        (user.getUsersMobilePhone()));
+            userResponse.setMobilePhoneResponse(MobilePhoneResponse.of(user.getUsersMobilePhone()));
         }
         return userResponse;
     }

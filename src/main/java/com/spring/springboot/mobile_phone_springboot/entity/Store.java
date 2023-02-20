@@ -3,33 +3,32 @@ package com.spring.springboot.mobile_phone_springboot.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "stores")
+public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    Integer id;
     @Column(name = "name")
-    private String name;
-    @Column(name = "surname")
-    private String surname;
-    @Column(name = "age")
-    private int age;
-    @ManyToOne(
+    String name;
+    @ManyToMany(
         cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE,
             CascadeType.REFRESH,
             CascadeType.DETACH
-        },
-        fetch = FetchType.EAGER
+        }
     )
-    @JoinColumn(name = "users_mobile_phone_id")
-    private MobilePhone usersMobilePhone;
+    @JoinTable(
+        name = "mobile_phone_store",
+        joinColumns = @JoinColumn(name = "store_id"),
+        inverseJoinColumns = @JoinColumn(name = "mobile_phone_id")
+    )
+    private List<MobilePhone> mobilePhones;
 }
