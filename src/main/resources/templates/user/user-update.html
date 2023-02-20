@@ -18,12 +18,12 @@
     <input type="text" th:field="*{age}" id="age"/>
     <br/>
     <label for="usersMobilePhone">Mobile Phone ID</label>
-    <input type="text" th:field="*{getMobilePhoneResponse}" id="usersMobilePhone"/>
+    <input type="text" th:field="*{mobilePhoneResponse.id}" id="usersMobilePhone"/>
     <br/>
     <input type="button" value="Main View"
            onclick="window.location.href = '/'"/>
     <input type="button" value="Users"
-           onclick="window.location.href = '/users/'"/>
+           onclick="window.location.href = '/users'"/>
     <input type="submit" value="Update">
 </form>
 </body>

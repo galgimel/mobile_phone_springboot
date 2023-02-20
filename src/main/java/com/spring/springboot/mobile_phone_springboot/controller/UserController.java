@@ -1,17 +1,14 @@
 package com.spring.springboot.mobile_phone_springboot.controller;
 
 import com.spring.springboot.mobile_phone_springboot.entity.User;
-import com.spring.springboot.mobile_phone_springboot.response.UserResponse;
 import com.spring.springboot.mobile_phone_springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
-@RequestMapping("/users/")
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
     @Autowired
@@ -21,20 +18,19 @@ public class UserController {
 
     @GetMapping
     public String showAllUsers(final Model model) {
-        List<UserResponse> allUsers = userService.getAllUsers();
-        model.addAttribute("allUsers", allUsers);
+        model.addAttribute("allUsers", userService.getAllUsers());
 
         return "/user/all-users";
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public String getUser(@PathVariable final int id, final Model model) {
         model.addAttribute("user", userService.getUser(id));
 
-        return "/user/user-profile.html";
+        return "/user/user-profile";
     }
 
-    @GetMapping("addNewUser")
+    @GetMapping("/addNewUser")
     public String addNewUser(@ModelAttribute("user") final User user) {
 
         return "/user/user-create";
@@ -44,26 +40,26 @@ public class UserController {
     public String saveUser(@ModelAttribute("user") final User user) {
         userService.saveUser(user);
 
-        return "redirect:/users/";
+        return "redirect:/users";
     }
 
-    @GetMapping("updateUser/{id}")
+    @GetMapping("/updateUser/{id}")
     public String updateUser(@PathVariable("id") final int id, final Model model) {
         model.addAttribute("user", userService.getUser(id));
 
         return "/user/user-update";
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public String saveUpdatedUser(@ModelAttribute("user") final User user) {
         userService.saveUser(user);
 
-        return "redirect:/users/";
+        return "redirect:/users";
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable("id") final int id) {
         userService.deleteUser(id);
-        return "redirect:/users/";
+        return "redirect:/users";
     }
 }

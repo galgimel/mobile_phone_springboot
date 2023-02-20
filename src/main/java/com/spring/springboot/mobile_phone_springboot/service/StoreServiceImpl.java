@@ -28,7 +28,7 @@ public class StoreServiceImpl implements StoreService {
     @Transactional
     public List<StoreResponse> getAllStores() {
         return storeRepository.findAll().stream()
-            .map(StoreResponse::getStoreResponse)
+            .map(StoreResponse::of)
             .collect(Collectors.toList());
     }
 
@@ -37,7 +37,7 @@ public class StoreServiceImpl implements StoreService {
     public List<MobilePhoneResponse> getAllMobilePhonesInStore(final int storeID) {
         return mobilePhonesFromStore(storeID)
             .stream()
-            .map(MobilePhoneResponse::getMobilePhoneResponse)
+            .map(MobilePhoneResponse::of)
             .collect(Collectors.toList());
     }
 
@@ -47,7 +47,7 @@ public class StoreServiceImpl implements StoreService {
         return mobilePhoneRepository.findAll()
             .stream()
             .filter(mobilePhone -> !mobilePhonesFromStore(storeID).contains(mobilePhone))
-            .map(MobilePhoneResponse::getMobilePhoneResponse)
+            .map(MobilePhoneResponse::of)
             .collect(Collectors.toList());
     }
 

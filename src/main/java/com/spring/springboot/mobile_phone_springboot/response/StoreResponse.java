@@ -12,7 +12,7 @@ public class StoreResponse {
     private final int id;
     private final String name;
 
-    public static StoreResponse getStoreResponse(final Store store) {
+    public static StoreResponse of(final Store store) {
         return StoreResponse.builder()
             .id(store.getId())
             .name(store.getName())

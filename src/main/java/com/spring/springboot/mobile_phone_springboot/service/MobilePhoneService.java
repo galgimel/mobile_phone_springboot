@@ -9,9 +9,9 @@ public interface MobilePhoneService {
 
     List<MobilePhoneResponse> getAllMobilePhones();
 
-    MobilePhoneResponse getMobilePhone(final int id);
+    MobilePhoneResponse getMobilePhone(int id);
 
-    void saveMobilePhone(final MobilePhone mobilePhone);
+    void saveMobilePhone(MobilePhone mobilePhone);
 
-    void deleteMobilePhone(final int id);
+    void deleteMobilePhone(int id);
 }

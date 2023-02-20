@@ -24,11 +24,14 @@ public class MobilePhone {
     @Column(name = "price")
     private int price;
     @OneToMany(
-        cascade = {CascadeType.PERSIST,
-        CascadeType.MERGE,
-        CascadeType.REFRESH,
-        CascadeType.DETACH},
-        fetch = FetchType.LAZY)
+        cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.DETACH
+        },
+        fetch = FetchType.LAZY
+    )
     @JoinColumn(name = "users_mobile_phone_id")
     private List<User> users;
     @ManyToMany(

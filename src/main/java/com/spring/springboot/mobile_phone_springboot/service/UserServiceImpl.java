@@ -23,15 +23,14 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public List<UserResponse> getAllUsers() {
         return userRepository.findAll().stream()
-            .map(UserResponse::getUserResponse)
+            .map(UserResponse::of)
             .collect(Collectors.toList());
     }
 
     @Override
     @Transactional
     public UserResponse getUser(final int id) {
-        final User user = userRepository.getReferenceById(id);
-        return UserResponse.getUserResponse(user);
+        return UserResponse.of(userRepository.getReferenceById(id));
     }
 
     @Override

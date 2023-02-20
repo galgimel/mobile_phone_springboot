@@ -7,7 +7,7 @@
 <body>
 <h1 th:text="'Create Mobile Phone:'"></h1>
 <br>
-<form th:method="POST" th:action="@{/mobile_phones/}" th:object="${mobilePhone}">
+<form th:method="POST" th:action="@{/mobile_phones}" th:object="${mobilePhone}">
         <label for="brand">Brand</label>
         <input type="text" th:field="*{brand}" id="brand"/>
         <br/>
@@ -23,7 +23,7 @@
         <input type="button" value="Main View"
                onclick="window.location.href = '/'"/>
         <input type="button" value="Mobile Phones"
-               onclick="window.location.href = '/mobile_phones/'"/>
+               onclick="window.location.href = '/mobile_phones'"/>
         <input type="submit" value="Save">
 </form>
 </body>

@@ -26,8 +26,10 @@ public class User {
             CascadeType.PERSIST,
             CascadeType.MERGE,
             CascadeType.REFRESH,
-            CascadeType.DETACH},
-        fetch = FetchType.EAGER)
+            CascadeType.DETACH
+        },
+        fetch = FetchType.EAGER
+    )
     @JoinColumn(name = "users_mobile_phone_id")
     private MobilePhone usersMobilePhone;
 }

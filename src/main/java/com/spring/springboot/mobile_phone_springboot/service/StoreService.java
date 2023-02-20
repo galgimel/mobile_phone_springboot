@@ -8,11 +8,11 @@ import java.util.List;
 public interface StoreService {
     List<StoreResponse> getAllStores();
 
-    List<MobilePhoneResponse> getAllMobilePhonesInStore(final int storeID);
+    List<MobilePhoneResponse> getAllMobilePhonesInStore(int storeID);
 
-    List<MobilePhoneResponse> getAllMobilePhonesOutOfStore(final int storeID);
+    List<MobilePhoneResponse> getAllMobilePhonesOutOfStore(int storeID);
 
-    void saveMobilePhoneToStore(final int storeID, final int mobilePhoneID);
+    void saveMobilePhoneToStore(int storeID, int mobilePhoneID);
 
-    void deleteMobilePhoneFromStore(final int storeID, final int mobilePhoneID);
+    void deleteMobilePhoneFromStore(int storeID, int mobilePhoneID);
 }
