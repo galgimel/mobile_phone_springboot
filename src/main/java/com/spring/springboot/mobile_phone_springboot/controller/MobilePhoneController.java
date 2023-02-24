@@ -23,7 +23,7 @@ public class MobilePhoneController {
     }
 
     @GetMapping("/{id}")
-    public String getMobilePhone(@PathVariable final Integer id, final Model model) {
+    public String getMobilePhone(@PathVariable final int id, final Model model) {
         if (id == 0) {
             return "redirect:/mobile_phones";
         }

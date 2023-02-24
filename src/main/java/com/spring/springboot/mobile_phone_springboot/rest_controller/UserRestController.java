@@ -4,18 +4,17 @@ import com.spring.springboot.mobile_phone_springboot.request.UserRequest;
 import com.spring.springboot.mobile_phone_springboot.response.UserResponse;
 import com.spring.springboot.mobile_phone_springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api/v1/users")
 public class UserRestController {
     private final UserService userService;
 
     @Autowired
-    public UserRestController(UserService userService) {
+    public UserRestController(final UserService userService) {
         this.userService = userService;
     }
 
@@ -30,12 +29,12 @@ public class UserRestController {
     }
 
     @PostMapping
-    public UserResponse addNewUser(@Validated @RequestBody final UserRequest userRequest) {
+    public UserResponse addNewUser(@RequestBody final UserRequest userRequest) {
         return userService.saveUser(userRequest);
     }
 
     @PutMapping
-    public UserResponse updateUser(@Validated @RequestBody final UserRequest userRequest) {
+    public UserResponse updateUser(@RequestBody final UserRequest userRequest) {
         return userService.saveUser(userRequest);
     }
 

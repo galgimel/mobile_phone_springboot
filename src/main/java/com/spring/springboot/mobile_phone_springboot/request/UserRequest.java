@@ -1,14 +1,12 @@
 package com.spring.springboot.mobile_phone_springboot.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.lang.NonNull;
 
 @Getter
 @Setter
 @ToString
+@Builder
 @AllArgsConstructor
 public class UserRequest {
     private final int id;

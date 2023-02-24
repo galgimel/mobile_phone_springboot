@@ -6,6 +6,7 @@ import org.springframework.lang.NonNull;
 @Getter
 @Setter
 @ToString
+@Builder
 @AllArgsConstructor
 public class MobilePhoneRequest {
     private final int id;
