@@ -1,7 +1,6 @@
 package com.spring.springboot.mobile_phone_springboot.controller;
 
 import com.spring.springboot.mobile_phone_springboot.service.StoreService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 public class StoreController {
     private final StoreService storeService;
 
-    @Autowired
     public StoreController(final StoreService storeService) {
         this.storeService = storeService;
     }

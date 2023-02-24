@@ -1,17 +1,19 @@
 package com.spring.springboot.mobile_phone_springboot.rest_controller;
 
-import com.spring.springboot.mobile_phone_springboot.entity.User;
+import com.spring.springboot.mobile_phone_springboot.request.UserRequest;
 import com.spring.springboot.mobile_phone_springboot.response.UserResponse;
 import com.spring.springboot.mobile_phone_springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/rest_user")
+@RequestMapping("/api/v1/user")
 public class UserRestController {
-    private UserService userService;
+    private final UserService userService;
+
     @Autowired
     public UserRestController(UserService userService) {
         this.userService = userService;
@@ -28,20 +30,18 @@ public class UserRestController {
     }
 
     @PostMapping
-    public UserResponse addNewUser(@RequestBody final User user) {
-        userService.saveUser(user);
-        return UserResponse.of(user);
+    public UserResponse addNewUser(@Validated @RequestBody final UserRequest userRequest) {
+        return userService.saveUser(userRequest);
     }
 
     @PutMapping
-    public UserResponse updateUser(@RequestBody final User user) {
-        userService.saveUser(user);
-        return UserResponse.of(user);
+    public UserResponse updateUser(@Validated @RequestBody final UserRequest userRequest) {
+        return userService.saveUser(userRequest);
     }
 
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable final int id) {
         userService.deleteUser(id);
-        return "Пользователь был удален";
+        return "Пользователь с ID: " + id + ", был удален";
     }
 }

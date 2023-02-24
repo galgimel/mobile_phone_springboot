@@ -1,6 +1,7 @@
 package com.spring.springboot.mobile_phone_springboot.response;
 
 import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
 public class MobilePhoneResponse {
     private final int id;
     private final String brand;

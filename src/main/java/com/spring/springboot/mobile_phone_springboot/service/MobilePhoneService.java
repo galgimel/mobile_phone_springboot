@@ -1,7 +1,7 @@
 package com.spring.springboot.mobile_phone_springboot.service;
 
+import com.spring.springboot.mobile_phone_springboot.request.MobilePhoneRequest;
 import com.spring.springboot.mobile_phone_springboot.response.MobilePhoneResponse;
-import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public interface MobilePhoneService {
 
     MobilePhoneResponse getMobilePhone(int id);
 
-    void saveMobilePhone(MobilePhone mobilePhone);
+    MobilePhoneResponse saveMobilePhone(MobilePhoneRequest mobilePhoneRequest);
 
     void deleteMobilePhone(int id);
 }

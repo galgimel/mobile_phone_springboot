@@ -1,13 +1,13 @@
 package com.spring.springboot.mobile_phone_springboot.entity;
 
 import lombok.*;
-
 import javax.persistence.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
@@ -32,4 +32,5 @@ public class User {
     )
     @JoinColumn(name = "users_mobile_phone_id")
     private MobilePhone usersMobilePhone;
+
 }

@@ -1,8 +1,7 @@
 package com.spring.springboot.mobile_phone_springboot.controller;
 
-import com.spring.springboot.mobile_phone_springboot.entity.MobilePhone;
+import com.spring.springboot.mobile_phone_springboot.request.MobilePhoneRequest;
 import com.spring.springboot.mobile_phone_springboot.service.MobilePhoneService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 public class MobilePhoneController {
     private final MobilePhoneService mobilePhoneService;
 
-    @Autowired
     public MobilePhoneController(final MobilePhoneService mobilePhoneService) {
         this.mobilePhoneService = mobilePhoneService;
     }
@@ -35,14 +33,14 @@ public class MobilePhoneController {
     }
 
     @GetMapping("/addNewMobilePhone")
-    public String addNewMobilePhone(@ModelAttribute("mobilePhone") final MobilePhone mobilePhone) {
+    public String addNewMobilePhone(@ModelAttribute("mobilePhone") final MobilePhoneRequest request) {
 
         return "/mobilePhone/mobilePhone-create";
     }
 
     @PostMapping
-    public String saveNewMobilePhone(@ModelAttribute("mobilePhone") final MobilePhone mobilePhone) {
-        mobilePhoneService.saveMobilePhone(mobilePhone);
+    public String saveNewMobilePhone(@ModelAttribute("mobilePhone") final MobilePhoneRequest request) {
+        mobilePhoneService.saveMobilePhone(request);
 
         return "redirect:/mobile_phones";
     }
@@ -55,8 +53,8 @@ public class MobilePhoneController {
     }
 
     @PutMapping("/{id}")
-    public String saveUpdatedMobilePhone(@ModelAttribute("mobilePhone") final MobilePhone mobilePhone) {
-        mobilePhoneService.saveMobilePhone(mobilePhone);
+    public String saveUpdatedMobilePhone(@ModelAttribute("mobilePhone") final MobilePhoneRequest request) {
+        mobilePhoneService.saveMobilePhone(request);
 
         return "redirect:/mobile_phones";
     }

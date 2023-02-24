@@ -7,6 +7,7 @@ import lombok.*;
 @Setter
 @ToString
 @Builder
+@AllArgsConstructor
 public class UserResponse {
     private final int id;
     private final String name;
