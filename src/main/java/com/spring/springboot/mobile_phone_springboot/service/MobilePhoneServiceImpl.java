@@ -51,8 +51,12 @@ public class MobilePhoneServiceImpl implements MobilePhoneService {
 
     private MobilePhone getMobilePhoneOf(MobilePhoneRequest mobilePhoneRequest) {
         MobilePhone mobilePhone;
-        Optional<MobilePhone> optional = mobilePhoneRepository.findById(mobilePhoneRequest.getId());
-        mobilePhone = optional.orElseGet(MobilePhone::new);
+        if (mobilePhoneRequest.getId() == 0) {
+            mobilePhone = new MobilePhone();
+        } else {
+            Optional<MobilePhone> optional = mobilePhoneRepository.findById(mobilePhoneRequest.getId());
+            mobilePhone = optional.orElseGet(MobilePhone::new);
+        }
         mobilePhone.setBrand(mobilePhoneRequest.getBrand());
         mobilePhone.setModel(mobilePhoneRequest.getModel());
         mobilePhone.setPerformance(mobilePhoneRequest.getPerformance());

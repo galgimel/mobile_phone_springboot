@@ -49,4 +49,6 @@ public class MobilePhone {
         inverseJoinColumns = @JoinColumn(name = "store_id")
     )
     private List<Store> stores;
+
+
 }
