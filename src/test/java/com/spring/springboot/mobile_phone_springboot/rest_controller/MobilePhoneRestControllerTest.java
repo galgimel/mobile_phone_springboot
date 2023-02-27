@@ -12,7 +12,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -21,26 +22,32 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class MobilePhoneRestControllerTest {
-
-    @MockBean private MobilePhoneRepository mobilePhoneRepository;
-    @Autowired private MockMvc mockMvc;
-
+    @MockBean
+    private MobilePhoneRepository mobilePhoneRepository;
+    @Autowired
+    private MockMvc mockMvc;
 
     @Test
     void showAllMobilePhones() throws Exception {
         List<MobilePhone> mobilePhones = List.of(
-        new MobilePhone(1, "Sony", "ExtraOne", 9, 1500, null, null),
-        new MobilePhone(5, "Apple", "14", 9, 1700, null, null)
+            new MobilePhone(1, "Sony", "ExtraOne", 9, 1500, null, null),
+            new MobilePhone(2, "Apple", "14", 9, 1700, null, null)
         );
+
         Mockito.when(mobilePhoneRepository.findAll()).thenReturn(mobilePhones);
         mockMvc.perform(get("/api/v1/mobile_phones"))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$",hasSize(2)))
-            .andExpect(jsonPath("$[*].id", containsInAnyOrder(1,5)))
-            .andExpect(jsonPath("$[*].brand", containsInAnyOrder("Sony", "Apple")))
-            .andExpect(jsonPath("$[*].model", containsInAnyOrder("ExtraOne", "14")))
-            .andExpect(jsonPath("$[*].performance", containsInAnyOrder(9, 9)))
-            .andExpect(jsonPath("$[*].price", containsInAnyOrder(1500, 1700)));
+            .andExpect(jsonPath("$", hasSize(2)))
+            .andExpect(jsonPath("$[0].id", equalTo(1)))
+            .andExpect(jsonPath("$[0].brand", equalTo("Sony")))
+            .andExpect(jsonPath("$[0].model", equalTo("ExtraOne")))
+            .andExpect(jsonPath("$[0].performance", equalTo(9)))
+            .andExpect(jsonPath("$[0].price", equalTo(1500)))
+            .andExpect(jsonPath("$[1].id", equalTo(2)))
+            .andExpect(jsonPath("$[1].brand", equalTo("Apple")))
+            .andExpect(jsonPath("$[1].model", equalTo("14")))
+            .andExpect(jsonPath("$[1].performance", equalTo(9)))
+            .andExpect(jsonPath("$[1].price", equalTo(1700)));
     }
 
     @Test
