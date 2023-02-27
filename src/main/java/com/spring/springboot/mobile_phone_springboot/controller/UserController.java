@@ -1,8 +1,7 @@
 package com.spring.springboot.mobile_phone_springboot.controller;
 
-import com.spring.springboot.mobile_phone_springboot.entity.User;
+import com.spring.springboot.mobile_phone_springboot.request.UserRequest;
 import com.spring.springboot.mobile_phone_springboot.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
-    @Autowired
+
     public UserController(final UserService userService) {
         this.userService = userService;
     }
@@ -31,14 +30,14 @@ public class UserController {
     }
 
     @GetMapping("/addNewUser")
-    public String addNewUser(@ModelAttribute("user") final User user) {
+    public String addNewUser(@ModelAttribute("user") final UserRequest request) {
 
         return "/user/user-create";
     }
 
     @PostMapping
-    public String saveUser(@ModelAttribute("user") final User user) {
-        userService.saveUser(user);
+    public String saveUser(@ModelAttribute("user") final UserRequest request) {
+        userService.saveUser(request);
 
         return "redirect:/users";
     }
@@ -51,8 +50,8 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public String saveUpdatedUser(@ModelAttribute("user") final User user) {
-        userService.saveUser(user);
+    public String saveUpdatedUser(@ModelAttribute("user") final UserRequest request) {
+        userService.saveUser(request);
 
         return "redirect:/users";
     }

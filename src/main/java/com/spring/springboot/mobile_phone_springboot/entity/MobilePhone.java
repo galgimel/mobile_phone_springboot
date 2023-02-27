@@ -8,6 +8,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "mobile_phones")
 public class MobilePhone {
@@ -48,4 +49,6 @@ public class MobilePhone {
         inverseJoinColumns = @JoinColumn(name = "store_id")
     )
     private List<Store> stores;
+
+
 }
