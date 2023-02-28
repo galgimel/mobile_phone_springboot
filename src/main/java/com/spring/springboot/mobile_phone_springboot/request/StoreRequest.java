@@ -1,7 +1,10 @@
 package com.spring.springboot.mobile_phone_springboot.request;
 
 import lombok.*;
-import org.springframework.lang.NonNull;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 
 @Getter
 @Setter
@@ -10,6 +13,7 @@ import org.springframework.lang.NonNull;
 @AllArgsConstructor
 public class StoreRequest {
     int id;
-    @NonNull
+    @NotBlank
+    @Size(min = 1, max = 20)
     String name;
 }
