@@ -1,7 +1,9 @@
 package com.spring.springboot.mobile_phone_springboot.request;
 
 import lombok.*;
-import org.springframework.lang.NonNull;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -10,10 +12,16 @@ import org.springframework.lang.NonNull;
 @AllArgsConstructor
 public class MobilePhoneRequest {
     private final int id;
-    @NonNull
+    @NotBlank
+    @Size(min = 1, max = 20)
     private final String brand;
-    @NonNull
+    @NotBlank
+    @Size(min = 1, max = 20)
     private final String model;
+    @NotBlank
+    @Size(min = 1, max = 15)
     private final int performance;
+    @NotBlank
+    @Size(min = 1)
     private final int price;
 }
