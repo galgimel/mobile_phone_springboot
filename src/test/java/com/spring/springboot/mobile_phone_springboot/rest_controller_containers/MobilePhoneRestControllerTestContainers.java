@@ -1,23 +1,26 @@
 package com.spring.springboot.mobile_phone_springboot.rest_controller_containers;
 
-import com.spring.springboot.mobile_phone_springboot.repository.MobilePhoneRepository;
+import com.spring.springboot.mobile_phone_springboot.BasedTestContainersTest;
 import com.spring.springboot.mobile_phone_springboot.request.MobilePhoneRequest;
 import com.spring.springboot.mobile_phone_springboot.rest_controller.MobilePhoneRestController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Testcontainers
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-public class MobilePhoneRestControllerTestContainers {
+//@ActiveProfiles(profiles = {"test"})
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@Testcontainers
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+
+/**
+ * All tests in package fot one-container-one-test
+ * use '@ActiveProfiles(profiles = {"test"}' instead 'extends BasedTestContainersTest'
+ * or change static methods on non-static in  'BasedTestContainersTest' with '@ActiveProfiles(profiles = {"test"}'
+ */
+public class MobilePhoneRestControllerTestContainers extends BasedTestContainersTest {
     @Autowired
     private MobilePhoneRestController mobilePhoneRestController;
-    @Autowired
-    private MobilePhoneRepository mobilePhoneRepository;
+
 
     @Test
     void showAllMobilePhones() {
@@ -80,5 +83,6 @@ public class MobilePhoneRestControllerTestContainers {
     void deleteMobilePhone() {
         mobilePhoneRestController.deleteMobilePhone(15);
         Assertions.assertEquals(14, mobilePhoneRestController.showAllMobilePhones().size());
+        Assertions.assertThrows(Exception.class, () -> {mobilePhoneRestController.getMobilePhone(15);});
     }
 }

@@ -1,17 +1,16 @@
 package com.spring.springboot.mobile_phone_springboot.rest_controller_containers;
 
+import com.spring.springboot.mobile_phone_springboot.BasedTestContainersTest;
 import com.spring.springboot.mobile_phone_springboot.rest_controller.StoreRestController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Testcontainers
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-class StoreRestControllerTestContainers {
+//@ActiveProfiles(profiles = {"test"})
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@Testcontainers
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+class StoreRestControllerTestContainers extends BasedTestContainersTest {
     @Autowired
     private StoreRestController storeRestController;
     @Test
